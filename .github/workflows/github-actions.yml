@@ -21,9 +21,10 @@ jobs:
               git submodule update --init --recursive
           - name: Checkout submodules
             run: git submodule update --init --recursive
-          - uses: webfactory/ssh-agent@v0.10.0
-            with:
-                ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          - name: Start SSH agent
+            env:
+              SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+            run: bash .github/actions/ssh-agent.sh
           - name: Run full test
             env:
               GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
