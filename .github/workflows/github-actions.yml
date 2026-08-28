@@ -11,7 +11,7 @@ jobs:
           image: cuaesd/aesd-autotest:24-assignment4-buildroot
           options: --platform linux/amd64
         runs-on: self-hosted
-        timeout-minutes: 120
+        timeout-minutes: 300
         steps:
           - name: Clone repository
             run: |
